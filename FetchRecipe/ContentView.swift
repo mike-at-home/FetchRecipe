@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        RecipeList(recipes: Model.RecipeList.testList.recipes)
+        RecipeList(recipes: .init(Model.RecipeList.testList.recipes.prefix(upTo: 10)))
             .environmentObject(ImageProvider())
     }
 }

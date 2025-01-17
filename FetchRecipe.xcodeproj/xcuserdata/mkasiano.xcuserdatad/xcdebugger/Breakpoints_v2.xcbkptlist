@@ -62,68 +62,10 @@
             filePath = "FetchRecipe/FancyHTTPCache.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
             landmarkName = "getData(for:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "C26CB81C-E60A-4636-A451-2F712590162A - 51cb4ba38a411f32"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #1 () async throws -&gt; Foundation.Data in FetchRecipe.FancyHTTPCache.getData(for: Foundation.URL) async throws -&gt; Foundation.Data"
-                  moduleName = "FetchRecipe.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mkasiano/Source/scratch/FetchRecipe/FetchRecipe/FancyHTTPCache.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "22"
-                  endingLineNumber = "22">
-               </Location>
-               <Location
-                  uuid = "C26CB81C-E60A-4636-A451-2F712590162A - 3558e1699478433c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #1 () async throws -&gt; Foundation.Data in FetchRecipe.FancyHTTPCache.getData(for: Foundation.URL) async throws -&gt; Foundation.Data"
-                  moduleName = "FetchRecipe.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mkasiano/Source/scratch/FetchRecipe/FetchRecipe/FancyHTTPCache.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "22"
-                  endingLineNumber = "22">
-               </Location>
-               <Location
-                  uuid = "C26CB81C-E60A-4636-A451-2F712590162A - 1c9b69465c36fd1b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(2) await resume partial function for closure #1 () async throws -&gt; Foundation.Data in FetchRecipe.FancyHTTPCache.getData(for: Foundation.URL) async throws -&gt; Foundation.Data"
-                  moduleName = "FetchRecipe.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mkasiano/Source/scratch/FetchRecipe/FetchRecipe/FancyHTTPCache.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "22"
-                  endingLineNumber = "22">
-               </Location>
-               <Location
-                  uuid = "C26CB81C-E60A-4636-A451-2F712590162A - fffd609eb6bab931"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(4) suspend resume partial function for closure #1 () async throws -&gt; Foundation.Data in FetchRecipe.FancyHTTPCache.getData(for: Foundation.URL) async throws -&gt; Foundation.Data"
-                  moduleName = "FetchRecipe.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mkasiano/Source/scratch/FetchRecipe/FetchRecipe/FancyHTTPCache.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "22"
-                  endingLineNumber = "22">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -136,68 +78,10 @@
             filePath = "FetchRecipe/FancyHTTPCache.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
             landmarkName = "getData(for:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "B723CA9B-9D0F-4EE9-B707-969483BE0484 - 2564ead37b1b0fc3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for FetchRecipe.FancyHTTPCache.getData(for: Foundation.URL) async throws -&gt; Foundation.Data"
-                  moduleName = "FetchRecipe.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mkasiano/Source/scratch/FetchRecipe/FetchRecipe/FancyHTTPCache.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "17"
-                  endingLineNumber = "17">
-               </Location>
-               <Location
-                  uuid = "B723CA9B-9D0F-4EE9-B707-969483BE0484 - 10c74f0fd562c3c1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for FetchRecipe.FancyHTTPCache.getData(for: Foundation.URL) async throws -&gt; Foundation.Data"
-                  moduleName = "FetchRecipe.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mkasiano/Source/scratch/FetchRecipe/FetchRecipe/FancyHTTPCache.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "17"
-                  endingLineNumber = "17">
-               </Location>
-               <Location
-                  uuid = "B723CA9B-9D0F-4EE9-B707-969483BE0484 - d0cdc8745db825cc"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(6) suspend resume partial function for FetchRecipe.FancyHTTPCache.getData(for: Foundation.URL) async throws -&gt; Foundation.Data"
-                  moduleName = "FetchRecipe.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mkasiano/Source/scratch/FetchRecipe/FetchRecipe/FancyHTTPCache.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "17"
-                  endingLineNumber = "17">
-               </Location>
-               <Location
-                  uuid = "B723CA9B-9D0F-4EE9-B707-969483BE0484 - 2564ead37b1b0fc3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for FetchRecipe.FancyHTTPCache.getData(for: Foundation.URL) async throws -&gt; Foundation.Data"
-                  moduleName = "FetchRecipe.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mkasiano/Source/scratch/FetchRecipe/FetchRecipe/FancyHTTPCache.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "17"
-                  endingLineNumber = "17">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
