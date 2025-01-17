@@ -11,11 +11,10 @@ struct RecipeList: View {
     let recipes: [Model.Recipe]
 
     var body: some View {
-        ScrollView {
-            ForEach(recipes) { recipe in
-                RecipeRow(recipe: recipe)
-            }
+        List(recipes) { recipe in
+            RecipeRow(recipe: recipe)
         }
+        .listStyle(.plain)
     }
 }
 
