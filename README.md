@@ -1,4 +1,4 @@
-See screenshots and video.
+![alt text](https://github.com/mike-at-home/FetchRecipe/blob/main/Screenshots/List.png?raw=true)
 
 # Focus Areas
 
