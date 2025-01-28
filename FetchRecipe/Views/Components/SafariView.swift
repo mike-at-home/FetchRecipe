@@ -14,17 +14,12 @@ struct SafariView: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> SFSafariViewController {
         let configuration = SFSafariViewController.Configuration()
         configuration.entersReaderIfAvailable = true
-        configuration.barCollapsingEnabled = false
         return .init(url: url, configuration: configuration)
     }
 
     func updateUIViewController(_ uiViewController: SFSafariViewController, context: Context) { }
-
-    typealias UIViewControllerType = SFSafariViewController
 }
 
 #Preview {
-    NavigationView {
-        SafariView(url: .init(string: "http://google.com")!)
-    }
+    SafariView(url: .init(string: "http://google.com")!)
 }

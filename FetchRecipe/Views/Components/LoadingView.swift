@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct LoadingView<Content: View>: View {
-    var source: () async throws -> Content
-    @State var isLoading: Bool = false
+    var content: () async throws -> Content
+    @State var isLoading = false
     @State var result: Result<Content, Error>?
 
     var body: some View {
@@ -29,7 +29,7 @@ struct LoadingView<Content: View>: View {
                         isLoading = true
                         Task {
                             do {
-                                let content = try await source()
+                                let content = try await content()
                                 self.result = .success(content)
                             } catch {
                                 self.result = .failure(error)
@@ -42,6 +42,15 @@ struct LoadingView<Content: View>: View {
     }
 }
 
+extension LoadingView {
+    public init<R>(resource: @escaping () async throws -> R, content: @escaping (R) -> Content) {
+        self.init(content: {
+            let result = try await resource()
+            return content(result)
+        })
+    }
+}
+
 #Preview {
-    LoadingView(source: { Text("Loaded") })
+    LoadingView(content: { Text("Loaded") })
 }

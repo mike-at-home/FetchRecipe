@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// small parallax effect on content depending place on screen
 struct ParallaxView<Content: View>: View {
     public var content: Content
 
@@ -31,11 +32,10 @@ struct ParallaxView<Content: View>: View {
         let progress = min(max((frame.minY - screenBounds.minY) / rangeY, 0), 1)
         
         let offset = (1 - progress) * contentRange
-        return -(offset / 6)
+        return -(offset / 5)
     }
 }
 
 #Preview {
-    RecipeList(recipes: Model.RecipeList.testList.recipes)
-        .environmentObject(ImageProvider())
+    RecipeList(recipes: [], onURLSelect: { _ in }).injectMockProviders()
 }

@@ -11,70 +11,128 @@ struct RecipeRow: View {
     @EnvironmentObject var imageProvider: ImageProvider
 
     var recipe: Model.Recipe
+    var isSelected: Bool
+    var didTap: () -> Void
+    var didTapURL: (URL) -> Void
 
     var body: some View {
-        Section {
-            GeometryReader { geometry in
-                HStack(alignment: .top) { }
-                    .frame(maxWidth: .infinity)
-                    .padding(.init(top: 15, leading: 0, bottom: 0, trailing: 0))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .frame(height: 250)
-                    .background(
-                        ParallaxView(content: VStack {
-                            if let url = recipe.largePhoto {
-                                LoadingView {
-                                    try await imageProvider
-                                        .getImage(for: url)
-                                        .resizable(resizingMode: .stretch)
-                                        .aspectRatio(1, contentMode: .fill)
+        Button(action: self.didTap) {
+            VStack {
+                HStack(alignment: .top) {
+                    VStack(alignment: .center) {
+                        VStack(alignment: .center) {
+                            Text(recipe.name)
+                                .font(.title3)
+                                .foregroundStyle(.primary)
+
+                            Text(recipe.cuisine.text)
+                                .font(.subheadline)
+                                .foregroundStyle(.secondary)
+                        }
+                        .padding(10)
+                        .frame(maxWidth: .infinity)
+                        .background(.ultraThinMaterial)
+
+                        Spacer()
+
+                        Grid(horizontalSpacing: 20) {
+                            GridRow {
+                                if let ytURL = recipe.youTube {
+                                    Button(action: { self.didTapURL(ytURL) }) {
+                                        Label("YouTube", systemImage: "video")
+                                    }
                                 }
-                            } else {
-                                Color(uiColor: .systemFill)
+
+                                if let sourceURL = recipe.source {
+                                    Button(action: { self.didTapURL(sourceURL) }) {
+                                        Label("Source", systemImage: "safari")
+                                    }
+                                }
                             }
-                        })
-                        .zIndex(-1)
-                        //                .mask(
-                        //                    LinearGradient(
-                        //                        gradient: Gradient(stops: [
-                        //                            .init(color: .clear, location: 0),
-                        //                            .init(color: .black, location: 0.05),
-                        //                            .init(color: .black, location: 0.95),
-                        //                            .init(color: .clear, location: 1),
-                        //                        ]),
-                        //                        startPoint: .top,
-                        //                        endPoint: .bottom
-                        //                    )
-                        //                )
-                    )
-            }
-            .aspectRatio(1, contentMode: .fill)
-            .clipped()
-
-        } header: {
-            VStack(alignment: .leading) {
-                Text(recipe.name)
-                    .font(.title3)
-                Text(recipe.cuisine.demonym)
-                    .font(.subheadline)
-            }
-        } footer: {
-            HStack {
-                Button(action: { }) {
-                    Label(
-                        "Add to Favorites",
-                        systemImage: "bookmark.fill"
-                    )
+                        }
+                        .buttonStyle(CellLinkButtonStyle())
+                        .opacity(isSelected ? 1 : 0)
+                        .padding()
+                    }
                 }
+                .aspectRatio(isSelected ? 0.75 : 1.5, contentMode: .fill)
+                .background(
+                    ParallaxView(content: VStack {
+                        if let url = recipe.largePhoto {
+                            LoadingView {
+                                try await imageProvider
+                                    .getImage(for: url)
+                                    .resizable(resizingMode: .stretch)
+                                    .aspectRatio(1, contentMode: .fill)
+                            }
+                            .frame(maxWidth: .infinity)
+                        } else {
+                            Color(uiColor: .systemFill)
+                        }
+                    })
+                )
+                .clipShape(RoundedRectangle(cornerRadius: 15))
+                .clipped()
+                .shadow(radius: 5)
             }
+            .padding()
         }
-
-//            .listRowSeparator(.hidden)
-        .listRowInsets(.init())
     }
 }
 
 #Preview {
-    RecipeList(recipes: Model.RecipeList.testList.recipes)
-        .environmentObject(ImageProvider())
+    ContentView()
+        .injectMockProviders()
+}
+
+/// fancy button inside cell
+struct CellLinkButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .labelStyle(CellLinkButtonLabelStyle())
+            .padding(10)
+            .background(.ultraThinMaterial, in: .buttonBorder)
+            .opacity(configuration.isPressed ? 0.5 : 1)
+    }
+}
+
+#Preview {
+    VStack {
+        Spacer()
+        Button(action: { print("Pressed") }) {
+            Label("Press Me", systemImage: "star")
+        }
+        Spacer()
+    }
+    .frame(maxWidth: .infinity)
+    .background(.red)
+    .buttonStyle(CellLinkButtonStyle())
+}
+
+/// label style inside fancy button
+struct CellLinkButtonLabelStyle: LabelStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        VStack {
+            configuration.icon
+                .imageScale(.medium)
+                .padding(12)
+                .frame(height: 40)
+                .background(.thinMaterial, in: Circle())
+                .foregroundStyle(.primary)
+
+            configuration.title
+                .font(.caption)
+                .foregroundStyle(.regularMaterial)
+        }
+        .frame(width: 80)
+    }
+}
+
+#Preview {
+    VStack {
+        Label("Title 1", systemImage: "star")
+        Label("Title 2", systemImage: "square")
+        Label("Title 3", systemImage: "circle")
+    }
+    .labelStyle(CellLinkButtonLabelStyle())
 }
