@@ -1,5 +1,5 @@
-<a href="[url](https://github.com/mike-at-home/FetchRecipe/blob/main/Screenshots/List.png?raw=true)"><img src="[http://url.to/image.png](https://github.com/mike-at-home/FetchRecipe/blob/main/Screenshots/List.png?raw=true)" align="left" width="100" ></a>
-<a href="[url](https://github.com/mike-at-home/FetchRecipe/blob/main/Screenshots/Recording.mp4?raw=true)"><img src="[http://url.to/image.png](https://github.com/mike-at-home/FetchRecipe/blob/main/Screenshots/Recording.mp4?raw=true)" align="left" width="100" ></a>
+https://github.com/mike-at-home/FetchRecipe/blob/main/Screenshots/List.png?raw=true
+https://github.com/mike-at-home/FetchRecipe/blob/main/Screenshots/Recording.mp4?raw=true
 
 # Focus Areas
 
