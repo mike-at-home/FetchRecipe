@@ -1,6 +1,7 @@
-https://github.com/mike-at-home/FetchRecipe/blob/main/Screenshots/List.png?raw=true
+https://github.com/mike-at-home/FetchRecipe/raw/refs/heads/main/Screenshots/List.png
 
-https://github.com/mike-at-home/FetchRecipe/blob/main/Screenshots/Recording.mp4?raw=true
+https://github.com/mike-at-home/FetchRecipe/raw/refs/heads/main/Screenshots/Recording.mp4
+
 
 # Focus Areas
 
