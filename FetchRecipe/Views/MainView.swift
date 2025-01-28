@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  MainView.swift
 //  FetchRecipe
 //
 //  Created by Michael Kasianowicz on 1/14/25.
@@ -7,34 +7,28 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    @State var presentedURL: URL?
-    @EnvironmentObject var recipeListProvider: RecipeListProvider
-
+struct MainView: View {
     var body: some View {
         NavigationView {
-            LoadingView(resource: recipeListProvider.getRecipeList, content: {
-                RecipeList(
-                    recipes: $0,
-                    onURLSelect: {
-                        self.presentedURL = $0
-                    }
-                )
-            })
-            .fullScreenCover(
-                isPresented: Binding(get: { presentedURL != nil }, set: {
-                    if $0 { } else { presentedURL = nil }
-                }),
-                onDismiss: { },
-                content: {
-                    SafariView(url: presentedURL!)
-                }
-            )
+            List {
+                NavigationLink("Full List", destination: {
+                    LoadingRecipeListView()
+                        .injectProviders(endpoint: .full)
+                })
+                NavigationLink("Empty List", destination: {
+                    LoadingRecipeListView()
+                        .injectProviders(endpoint: .empty)
+                })
+                NavigationLink("Malformed List", destination: {
+                    LoadingRecipeListView()
+                        .injectProviders(endpoint: .malformed)
+                })
+            }
         }
     }
 }
 
 #Preview {
-    ContentView()
+    MainView()
         .injectMockProviders()
 }

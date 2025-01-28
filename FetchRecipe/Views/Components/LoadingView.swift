@@ -19,7 +19,7 @@ struct LoadingView<Content: View>: View {
                 content
                     .transition(.opacity)
             default:
-                Text("Error")
+                Text("An error occurred while loading.")
             }
         } else {
             ProgressView()

@@ -37,5 +37,5 @@ struct ParallaxView<Content: View>: View {
 }
 
 #Preview {
-    RecipeList(recipes: [], onURLSelect: { _ in }).injectMockProviders()
+    MainView().injectMockProviders()
 }

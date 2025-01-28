@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct RecipeRow: View {
-    @EnvironmentObject var imageProvider: ImageProvider
-
-    var recipe: Model.Recipe
+    var name: String
+    var cuisine: String
+    var youTubeURL: URL?
+    var sourceURL: URL?
+    var largePhotoURL: URL?
+    
     var isSelected: Bool
     var didTap: () -> Void
     var didTapURL: (URL) -> Void
@@ -20,57 +23,23 @@ struct RecipeRow: View {
             VStack {
                 HStack(alignment: .top) {
                     VStack(alignment: .center) {
-                        VStack(alignment: .center) {
-                            Text(recipe.name)
-                                .font(.title3)
-                                .foregroundStyle(.primary)
-
-                            Text(recipe.cuisine.text)
-                                .font(.subheadline)
-                                .foregroundStyle(.secondary)
-                        }
-                        .padding(10)
-                        .frame(maxWidth: .infinity)
-                        .background(.ultraThinMaterial)
+                        RecipeHeaderView(
+                            name: name,
+                            cuisine: cuisine
+                        )
 
                         Spacer()
 
-                        Grid(horizontalSpacing: 20) {
-                            GridRow {
-                                if let ytURL = recipe.youTube {
-                                    Button(action: { self.didTapURL(ytURL) }) {
-                                        Label("YouTube", systemImage: "video")
-                                    }
-                                }
-
-                                if let sourceURL = recipe.source {
-                                    Button(action: { self.didTapURL(sourceURL) }) {
-                                        Label("Source", systemImage: "safari")
-                                    }
-                                }
-                            }
-                        }
-                        .buttonStyle(CellLinkButtonStyle())
+                        CellButtonGroup(
+                            youTubeURL: youTubeURL,
+                            sourceURL: sourceURL,
+                            didTapURL: didTapURL
+                        )
                         .opacity(isSelected ? 1 : 0)
-                        .padding()
                     }
                 }
                 .aspectRatio(isSelected ? 0.75 : 1.5, contentMode: .fill)
-                .background(
-                    ParallaxView(content: VStack {
-                        if let url = recipe.largePhoto {
-                            LoadingView {
-                                try await imageProvider
-                                    .getImage(for: url)
-                                    .resizable(resizingMode: .stretch)
-                                    .aspectRatio(1, contentMode: .fill)
-                            }
-                            .frame(maxWidth: .infinity)
-                        } else {
-                            Color(uiColor: .systemFill)
-                        }
-                    })
-                )
+                .background(CellBackgroundView(url: largePhotoURL))
                 .clipShape(RoundedRectangle(cornerRadius: 15))
                 .clipped()
                 .shadow(radius: 5)
@@ -81,12 +50,12 @@ struct RecipeRow: View {
 }
 
 #Preview {
-    ContentView()
+    MainView()
         .injectMockProviders()
 }
 
 /// fancy button inside cell
-struct CellLinkButtonStyle: ButtonStyle {
+private struct CellLinkButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .labelStyle(CellLinkButtonLabelStyle())
@@ -110,7 +79,7 @@ struct CellLinkButtonStyle: ButtonStyle {
 }
 
 /// label style inside fancy button
-struct CellLinkButtonLabelStyle: LabelStyle {
+private struct CellLinkButtonLabelStyle: LabelStyle {
     func makeBody(configuration: Configuration) -> some View {
         VStack {
             configuration.icon
@@ -135,4 +104,71 @@ struct CellLinkButtonLabelStyle: LabelStyle {
         Label("Title 3", systemImage: "circle")
     }
     .labelStyle(CellLinkButtonLabelStyle())
+}
+
+private struct CellBackgroundView: View {
+    @EnvironmentObject private var imageProvider: ImageProvider
+    public let url: URL?
+
+    var body: some View {
+        ParallaxView(content: VStack {
+            if let url {
+                LoadingView {
+                    try await imageProvider
+                        .getImage(for: url)
+                        .resizable(resizingMode: .stretch)
+                        .aspectRatio(1, contentMode: .fill)
+                }
+                .frame(maxWidth: .infinity)
+            } else {
+                Color(uiColor: .systemFill)
+            }
+        })
+    }
+}
+
+struct RecipeHeaderView: View {
+    var name: String
+    var cuisine: String
+
+    var body: some View {
+        VStack(alignment: .center) {
+            Text(name)
+                .font(.title3)
+                .foregroundStyle(.primary)
+
+            Text(cuisine)
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+        }
+        .padding(10)
+        .frame(maxWidth: .infinity)
+        .background(.ultraThinMaterial)
+    }
+}
+
+struct CellButtonGroup: View {
+    var youTubeURL: URL?
+    var sourceURL: URL?
+    var didTapURL: (URL) -> Void
+
+    var body: some View {
+        Grid(horizontalSpacing: 20) {
+            GridRow {
+                if let youTubeURL {
+                    Button(action: { self.didTapURL(youTubeURL) }) {
+                        Label("YouTube", systemImage: "video")
+                    }
+                }
+
+                if let sourceURL {
+                    Button(action: { self.didTapURL(sourceURL) }) {
+                        Label("Source", systemImage: "safari")
+                    }
+                }
+            }
+        }
+        .buttonStyle(CellLinkButtonStyle())
+        .padding()
+    }
 }

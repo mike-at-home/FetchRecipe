@@ -36,7 +36,7 @@ public actor RemoteRecipeListProvider: RecipeListProviderProtocol {
 
     public init(
         dataProvider: URLDataProvider,
-        url: URL = .init(string: "https://d3jbb8n5wk0qxi.cloudfront.net/recipes.json")!
+        url: URL
     ) {
         self.dataProvider = dataProvider
         self.url = url

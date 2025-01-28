@@ -80,6 +80,8 @@ public actor CachingURLDataProvider: URLDataProvider {
 public class MemoryURLCache: URLCacheProtocol {
     private var cache: [URL: CachedURLResponse] = [:]
 
+    public init() { }
+    
     public func cachedResponse(for request: URLRequest) -> CachedURLResponse? {
         precondition(request.httpMethod?.lowercased() == "get", "only GET supported")
 
@@ -113,7 +115,7 @@ public class DiskURLCache: URLCacheProtocol {
     private let cachePath: URL
     private let fileManager: FileManager
 
-    public init(cachePath: URL, fileManager: FileManager = .default) {
+    public init(cachePath: URL = FileManager.default.temporaryDirectory.appending(path: "url_cache"), fileManager: FileManager = .default) {
         self.cachePath = cachePath
         self.fileManager = fileManager
         do {
